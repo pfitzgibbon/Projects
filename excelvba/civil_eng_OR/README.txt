@@ -9,8 +9,10 @@ this point).
 I created a tool for locating optimal locations of tap stands for communities using Excel Solver and VBA and the K-Means 
 algorithm. Then I saw the minimum spanning tree algorithm could be applied to designing an entire water distribution system, choosing the
 minimum distance between homes, where distance is defined by cost of pipe and restraints are in place to assure hydraulically it all works.
-I have yet to finish that project after over a year, ran into multiple issues of not knowing how to solve it; Excel not being capable of
-handling all the variables/constraints, not knowing how to get around that, then learning that I could get around it with VBA but then the
-code i had found to get around it not working. I took a break from it and decided to just read research on how others have done it/improved
-it with different heuristics. I've thought of just doing it in Python now since I've got a lot better at it, but i put so many hours into
-the Excel file, that I have to finish it there first then maybe transfer it over to Python. 
+I was not able to finish the project; Excel not being capable of handling all the variables/constraints, not knowing how to get around that, 
+then learning that I could get around it with VBA but then that code not working and there not being much out there for VBA help. 
+I took a break from it and decided to just read research on how others have done it/improved it with different heuristics, and found that it's 
+a problem that's been solved many time with many methods and what I was trying was nothing new. 
+
+I've thought of just doing it in Python, but it's not high on my list of projects to attempt since it has no use to me anymore (I'm not part of EWB anymore) 
+and there are other software already created that would do the same thing.
