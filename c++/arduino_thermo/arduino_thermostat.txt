@@ -1,0 +1,241 @@
+Code for creating a thermostat using a temperature sensor and LED light. 
+
+#include <LiquidCrystal.h>
+
+double refV;
+double tL=35;
+double tH=36;
+
+LiquidCrystal lcd(12,11,5,4,3,2);
+
+int a = 2356;
+int b = 5698;
+int c = 3830;
+int d = 1234;
+int e = 9635;
+int f = 4231;
+
+void playTone(const int tone_, const long beat, const long tempo, const int speakerPin)
+{
+  long duration = beat*tempo; 
+  const int rest_count = 100;
+  long elapsed_time = 0;
+  if (tone_ > 0)
+  {
+   while (elapsed_time < duration)
+    {
+     digitalWrite(speakerPin,HIGH);
+     delayMicroseconds(tone_ / 2);
+     
+     digitalWrite(speakerPin, LOW);
+     delayMicroseconds(tone_ / 2);
+     
+     elapsed_time += (tone_);
+    }
+  }
+  else 
+  {
+    for (int j = 0; j < rest_count; j++)
+   {
+    delayMicroseconds(duration);
+   }
+  }
+}
+int speakerOutPin = 6;
+
+const int pinL = 8; 
+const int pinH = 9;
+const int pinM = 10;
+
+int stateL = 0;
+int stateH = 0;
+int stateM = 0;
+
+void setup()
+{
+  pinMode(speakerOutPin, OUTPUT);
+  pinMode(13, OUTPUT);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print(tL);
+  lcd.print(" to ");
+  lcd.print(tH);
+  analogReference(DEFAULT);
+  
+  refV=5;
+  pinMode(6, OUTPUT);
+  pinMode(pinL, INPUT);
+  pinMode(pinH,INPUT);
+  pinMode(pinM,INPUT);
+  
+  Serial.begin(9600);
+  Serial.print("tL is ");
+  Serial.println(tL);
+  Serial.print("tH is ");
+  Serial.println(tH);
+  Serial.println("temp(C)   Status");
+  Serial.println("-------------");
+  Serial.println("Beginning of Data:");
+}
+
+void loop()
+{
+  int acc = 0;
+  int N = 10;
+  for (int i = 0; i < N; i++)
+  {
+    acc += analogRead(0);
+    delay(10);
+  }
+  
+  double voltage = refV*acc/1023/(double(N));
+  double tempC = 1 + voltage*100.;
+  lcd.setCursor(0,1);
+  lcd.print(tempC);
+  
+  if(tempC<tL) digitalWrite(13, HIGH);
+  if(tempC>tH) digitalWrite(13,LOW);
+  delay(100);
+
+  stateL = digitalRead(pinL);
+  stateH = digitalRead(pinH);
+  stateM = digitalRead(pinM); 
+
+int buttonStatus = stateL*2 + stateH*4 + stateM*1;
+switch(buttonStatus)
+{
+ case 3:
+ {
+  tL += 0.5;
+  tH += 0.5;
+  long tempo = 1000; 
+  playTone(a,42,tempo,speakerOutPin);
+  delay(50);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print(tL);
+  lcd.print(" to ");
+  lcd.print(tH);
+  break;
+ }
+ 
+ case 5: 
+{ 
+  tL -= 0.5;
+  tH -= 0.5;
+  long tempo = 1000; 
+  playTone(b,50,tempo,speakerOutPin);
+  delay(50);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print(tL);
+  lcd.print(" to ");
+  lcd.print(tH);
+  break;
+}
+ 
+ case 2:
+ {
+  tL += 3;
+  tH += 3;
+  long tempo = 1000; 
+  playTone(c,35,tempo,speakerOutPin);
+  delay(50);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print(tL);
+  lcd.print(" to ");
+  lcd.print(tH);
+  break;
+ }
+ 
+ case 4:
+ {
+  tL -= 3;
+  tH -= 3;
+  long tempo = 1000; 
+  playTone(d,16,tempo,speakerOutPin);
+  delay(50);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print(tL);
+  lcd.print(" to ");
+  lcd.print(tH);
+  break;
+ }
+}
+
+if ( tH > 55, tL > 54)
+{
+  long tempo = 10000; 
+  playTone(e,42,tempo,speakerOutPin);
+  delay(50);
+  tH = 55; 
+  tL = 54;
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print("    ");
+  delay(1000);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print(tL);
+  lcd.print(" to ");
+  lcd.print(tH);
+  lcd.blink();
+  delay(1000);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print("    ");
+  delay(1000);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print(tL);
+  lcd.print(" to ");
+  lcd.print(tH);
+  delay(1000);
+}
+if ( tH < 21, tL < 20)
+{
+  long tempo = 10000; 
+  playTone(f,36,tempo,speakerOutPin);
+  delay(50);
+  tH = 21; 
+  tL = 20;
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print("    ");
+  delay(1000);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print(tL);
+  lcd.print(" to ");
+  lcd.print(tH);
+  lcd.blink();
+  delay(1000);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print("    ");
+  delay(1000);
+  lcd.begin(16,2);
+  lcd.setCursor(0,0);
+  lcd.print(tL);
+  lcd.print(" to ");
+  lcd.print(tH);
+  delay(1000);
+}
+
+  int lb = digitalRead(13);
+  if(lb == LOW)
+ {
+  Serial.print(tempC);
+  Serial.print("   ");
+  Serial.println(0);
+ }
+ if(lb == HIGH)
+ {
+  Serial.print(tempC);
+  Serial.print("   ");
+  Serial.println(1); 
+ }
+}
+  
