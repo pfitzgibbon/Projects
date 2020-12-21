@@ -1,0 +1,15 @@
+<html>
+<?php
+
+$CusiD= $_POST["CusiD"];
+
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ",
+"3425pfitzgib");
+
+$delete1="DELETE *
+FROM Customers 
+WHERE CUS_ID = '$CusiD'";
+
+mysqli_query($connection, $delete1);
+?>

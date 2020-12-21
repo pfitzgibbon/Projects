@@ -1,0 +1,17 @@
+<html>
+<?php
+
+$cusid= $_POST["cusid"];
+$cusfname= $_POST["cusfname"];
+$cuslname= $_POST["cuslname"];
+$cusemail= $_POST["cusemail"];
+$cusdob= $_POST["cusdob"];
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ",
+"3425pfitzgib");
+
+$insert="INSERT INTO Customers VALUES ('$cusid', '$cusfname', '$cuslname', '$cusemail', '$cusdob');";
+
+mysqli_query($connection, $insert);
+?>
+</html>

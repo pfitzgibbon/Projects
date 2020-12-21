@@ -1,0 +1,15 @@
+<html>
+<?php
+
+$empiD= $_POST["empiD"];
+
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ",
+"3425pfitzgib");
+
+$delete="DELETE *
+FROM Artists 
+WHERE EMP_ID = '$empiD'";
+
+mysqli_query($connection, $delete);
+?>

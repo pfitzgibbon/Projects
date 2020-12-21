@@ -1,0 +1,18 @@
+<html>
+<?php
+
+$CusID = $_POST["CusID"];
+$Cuslname = $_POST["Cuslname"];
+$Cusemail = $_POST["Cusemail"];
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ", "3425pfitzgib");
+
+$append2="UPDATE Customers SET CUS_LNAME = '$Cuslname', CUS_EMAIL = '$Cusemail'  
+WHERE CUS_ID = '$CusID'";
+
+mysqli_query($connection, $append2);
+
+printf("Successfully Changed!");
+
+?>
+</html>

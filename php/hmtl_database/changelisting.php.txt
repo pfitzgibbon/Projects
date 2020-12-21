@@ -1,0 +1,22 @@
+<html>
+<?php
+
+$artNumber = $_POST["artNumber"];
+$artListing = $_POST["listing"];
+
+if (empty($artListing)) printf("You have not selected a listing");
+else
+{ for ($i=0; $i<sizeof($artListing); $i++)
+$ArtListing = $artListing[$i];}
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ", "3425pfitzgib");
+
+$append="UPDATE artpieces SET ART_LISTING = '$ArtListing' 
+WHERE ART_NUM = '$artNumber'";
+
+mysqli_query($connection, $append);
+
+printf("Successfully Added!");
+
+?>
+</html>

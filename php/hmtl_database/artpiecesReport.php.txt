@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Create Report</title>
+</head>
+<body>
+<?php
+
+printf("Report date: ".time());
+printf ("<h1>Art Work Information</h1>");
+printf ("<h2>Report Date: ".date("Y-m-d")."</h2>");
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ", "3425pfitzgib");
+
+$get="SELECT ART_NUM, ART_TITLE, EMP_ID, ART_MEDIUM, ART_LISTING, ART_PRICE, ART_DIM, ART_DR 
+FROM artpieces";
+$result = mysqli_query($connection, $get);
+
+printf("<table border='2'>");
+printf("<tr><th>Art Number</th><th>Art Title</th><th>Employee ID</th><th>Art Medium</th><th>Art Listing</th><th>Art Price</th><th>Art Dimmensions</th><th>Artwork Date Recieved</th></tr>");
+while ($row = mysqli_fetch_row($result)) {
+printf("<tr>");
+printf("<td>".$row[0]."</td>");
+printf("<td>".$row[1]."</td>");
+printf("<td>".$row[2]."</td>");
+printf("<td>".$row[3]."</td>");
+printf("<td>".$row[4]."</td>");
+printf("<td>".$row[5]."</td>");
+printf("<td>".$row[6]."</td>");
+printf("<td>".$row[7]."</td>");
+printf("</tr>");
+}
+printf("</table>");
+
+mysqli_free_result($result);
+?>
+</body>
+</html>

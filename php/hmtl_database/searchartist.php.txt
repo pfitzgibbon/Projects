@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Search Artist</title>
+</head>
+<body>
+<?php
+
+$empID = $_POST["EMP_ID"];
+$empID = (is_numeric($empID)? (int)$empID:0);
+
+$connection = mysqli_connect("instruct.coe.neu.edu", "3425pfitzgib", “Yd5grrzZ","3425pfitzgib");
+
+$get="SELECT EMP_ID, EMP_FNAME, EMP_LNAME, EMP_CELLNUM, EMP_ADDRESS, EMP_CITY, EMP_STATE, EMP_ZIP 
+FROM Artists
+WHERE EMP_ID = '$empID'";
+$result = mysqli_query($connection, $get);
+
+while ($row = mysqli_fetch_row($result)) {
+printf("<table border='2'>");
+printf("<tr><th>Emp ID</th><th>First Name</th><th>Last Name</th><th>Cell Number</th><th>Address</th><th>City</th><th>State</th><th>Zip</th></tr><tr>");
+printf ("<td>".$row[0]."</td>");
+printf ("<td>".$row[1]."</td>");
+printf ("<td>".$row[2]."</td>");
+printf ("<td>".$row[3]."</td>");
+printf ("<td>".$row[4]."</td>");
+printf ("<td>".$row[5]."</td>");
+printf ("<td>".$row[6]."</td>");
+printf ("<td>".$row[7]."</td>");
+printf("</tr></table>");
+}
+
+?>
+</body>
+</html>

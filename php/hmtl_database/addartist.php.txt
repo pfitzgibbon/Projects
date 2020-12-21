@@ -1,0 +1,19 @@
+<html>
+<?php
+
+$empiD= $_POST["empiD"];
+$empfname= $_POST["empfname"];
+$emplname= $_POST["emplname"];
+$empcell= $_POST["empcell"];
+$empadd= $_POST["empadd"];
+$empcity= $_POST["empcity"];
+$empstate= $_POST["empstate"];
+$empzip= $_POST["empzip"];
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ",
+"3425pfitzgib");
+
+$insert3="INSERT INTO Artists VALUES ('$empiD','$empfname', '$emplname', '$empcell', '$empadd', '$empcity', '$empstate', '$empzip');";
+
+mysqli_query($connection, $insert3);
+?>

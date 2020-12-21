@@ -1,0 +1,28 @@
+<html>
+<?php
+
+$EmpiD = $_POST["EmpiD"];
+$Emplname = $_POST["Emplname"];
+$Empcell = $_POST["Empcell"];
+$Empadd = $_POST["Empadd"];
+$Empcity = $_POST["Empcity"];
+$Empstate = $_POST["Empstate"];
+$Empzip = $_POST["Empzip"];
+
+
+if (empty($Empstate)) printf("You have not selected a state");
+else
+{ for ($i=0; $i<sizeof($Empstate); $i++)
+$EmpState = $Empstate[$i];}
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ", "3425pfitzgib");
+
+$append1="UPDATE Artists SET EMP_LNAME = '$Emplname', EMP_CELLNUM = '$Empcell', EMP_ADDRESS = '$Empadd', EMP_CITY = '$Empcity', EMP_STATE = '$EmpState', EMP_ZIP = '$Empzip'  
+WHERE EMP_ID = '$EmpiD'";
+
+mysqli_query($connection, $append1);
+
+printf("Successfully Changed!");
+
+?>
+</html>

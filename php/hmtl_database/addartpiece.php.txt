@@ -1,0 +1,19 @@
+<html>
+<?php
+
+$artnum= $_POST["artnum"];
+$arttitle= $_POST["arttitle"];
+$empid= $_POST["empid"];
+$artmed= $_POST["artmed"];
+$artlist= $_POST["artlist"];
+$artprice= $_POST["artprice"];
+$artdim= $_POST["artdim"];
+$artdr= $_POST["artdr"];
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ",
+"3425pfitzgib");
+
+$insert4="INSERT INTO artpieces VALUES ($artnum, $arttitle, $empid, $artmed, $artlist, $artprice, $artdim, $artdr);";
+
+mysqli_query($connection, $insert4);
+?>

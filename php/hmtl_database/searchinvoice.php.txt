@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Search Invoice</title>
+</head>
+<body>
+<?php
+
+$invnum = $_POST["INV_NUM"];
+$invnum = (is_numeric($invnum)? (int)$invnum:0);
+$invline = $_POST["INV_LINE"];
+$invline = (is_numeric($invline)? (int)$invline:0);
+
+$connection = mysqli_connect("instruct.coe.neu.edu", "3425pfitzgib", "Yd5grrzZ","3425pfitzgib");
+
+$get="SELECT INV_NUM, INV_LINE, INV_DATE, ART_NUM, ART_PRICE, INV_TAX, INV_TOTAL, RUN_SUM, CUS_ID  
+FROM Invoices
+WHERE INV_NUM = '$invnum'
+AND INV_LINE = '$invline'";
+$result = mysqli_query($connection, $get);
+
+while ($row = mysqli_fetch_row($result)) {
+printf("<table border='2'>");
+printf("<tr><th>Invoice Number</th><th>Invoice Line</th><th>Invoice Date</th><th>Art Number</th><th>Art Price</th><th>Tax</th><th>Invoice Total</th><th>Running Sum</th><th>Customer ID</th></tr><tr>");
+printf ("<td>".$row[0]."</td>");
+printf ("<td>".$row[1]."</td>");
+printf ("<td>".$row[2]."</td>");
+printf ("<td>".$row[3]."</td>");
+printf ("<td>".$row[4]."</td>");
+printf ("<td>".$row[5]."</td>");
+printf ("<td>".$row[6]."</td>");
+printf ("<td>".$row[7]."</td>");
+printf ("<td>".$row[8]."</td>");
+printf("</tr></table>");
+}
+
+?>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html>
+<?php
+
+$invnum= $_POST["invnum"];
+$invline= $_POST["invline"];
+$invdate= $_POST["invdate"];
+$artnumb= $_POST["artnumb"];
+$artPrice= $_POST["artPrice"];
+$invtax= $_POST["invtax"];
+$invtotal= $_POST["invtotal"];
+$runsum= $_POST["runsum"];
+$cusiD= $_POST["cusiD"];
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ",
+"3425pfitzgib");
+
+$insert2="INSERT INTO Invoices VALUES ('$invnum', '$invline', '$artnumb', '$artPrice', '$invtax', '$invtotal', '$runsum', '$cusiD');";
+
+mysqli_query($connection, $insert2);
+?>

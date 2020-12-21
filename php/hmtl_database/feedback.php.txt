@@ -1,0 +1,20 @@
+<html>
+<?php
+
+$medium = $_POST["medium"];
+$comments = $_POST["commentsection"];
+
+$connection=mysqli_connect("instruct.coe.neu.edu","3425pfitzgib","Yd5grrzZ", "3425pfitzgib");
+
+if (empty($medium)) printf("You have not selected any mediums.");
+else
+{ for ($i=0; $i<sizeof($medium); $i++)
+{
+$add5="INSERT INTO feedback VALUES ('".$medium[$i]."', '$comments');"; 
+
+mysqli_query($connection, $add5);}}
+
+printf("Successfully Added!");
+
+?>
+</html>
