@@ -7,5 +7,5 @@ i majored in industrial engineering, found operations research to be really inte
 and excel solver.
 
 fast forward to my senior year of college (spring 2019) and i was coding again in excel vba and learning very basics of python.
-went 4 years without touching coding (unless you count sql, which i really don't), but got a job where i had to learn it and 
+went 4 years without touching coding between those years (unless you count sql, which i really don't), but got a job where i had to learn it and 
 have kept learning ever since to the point that i consider my career path now pretty much tied to coding and compsci. 
