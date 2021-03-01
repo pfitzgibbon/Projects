@@ -1,0 +1,11 @@
+# code for PySpark function that takes variable amount of columns
+
+def multi_col_func(*col_list):
+    result = someFunction([i for i in col_list])
+    return result
+multi_col_func_udf = udf(multi_col_func, FloatType())
+
+
+# to put into the PySpark withColumn
+
+.withColumn('multi_col_calc', multi_col_func_udf(*[F.col(i) for i in col_list]))
